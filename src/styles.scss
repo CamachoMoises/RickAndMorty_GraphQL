@@ -10,7 +10,7 @@
 
 html {
   font-family: 'RocknRoll One', sans-serif;
-  background-color: #5E2C99;
+  background-color: #56529d;
 }
 
 ul {
@@ -169,7 +169,7 @@ nav {
           height: 1px;
           content: '.';
           color: transparent;
-          background: #8C43E6;
+          background: #4348e6;
           visibility: none;
           opacity: 0;
           z-index: -1;
@@ -333,7 +333,7 @@ ul.episodes__list {
 
     &::before,
     &::after {
-      background: linear-gradient(135deg, #8C43E6 0%, #5E2C99 100%);
+      background: linear-gradient(135deg, #5343e6 0%, #1565ce 100%);
       border-radius: 1rem 1rem 0 1rem;
       content: '';
       height: 3rem;
