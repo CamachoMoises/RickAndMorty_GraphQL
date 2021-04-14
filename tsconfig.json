@@ -5,7 +5,7 @@
     "paths": {
       "@app/*": ["src/app/*"],
       "@shared/*": ["src/app/shared/*"],
-      "@characters/*": ["src/app/components/pages/characters0/*"],
+      "@characters/*": ["src/app/components/pages/characters/*"],
       "@pages/*": ["src/app/components/pages/*"],
       "@environments/*": ["src/environments/*"],
     },
