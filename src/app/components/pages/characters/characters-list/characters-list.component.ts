@@ -1,3 +1,4 @@
+import { LocalStorageService } from '@shared/services/loacalStorage.service';
 import { Component } from '@angular/core';
 import { DataService } from '@shared/services/data.service';
 
@@ -12,6 +13,9 @@ import { DataService } from '@shared/services/data.service';
 })
 export class CharactersListComponent {
   character$=this.dataScv.character$;
-  constructor(private dataScv: DataService) { }
+  constructor(
+    private dataScv: DataService,
+    private localStorageServ: LocalStorageService
+     ) { }
 
 }
