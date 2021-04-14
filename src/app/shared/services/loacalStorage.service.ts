@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { Character } from '@shared/interfaces/data.interface';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 
 const MY_FAVORITES = 'myFavorites';
@@ -11,7 +12,9 @@ const MY_FAVORITES = 'myFavorites';
 export class LocalStorageService {
   private characterFavSubjet = new BehaviorSubject<Character[]>(null);
   charactersFav$ = this.characterFavSubjet.asObservable();
-  constructor() {
+  constructor(
+    private toastrService: ToastrService
+  ) {
     this.incialStorage();
   }
 
@@ -26,20 +29,21 @@ export class LocalStorageService {
       const currentsFav = this.getFavoritesCharacters();
       localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, character]));
       this.characterFavSubjet.next([...currentsFav, character]);
+      this.toastrService.success(`${character.name} added to favorite`, `RickAndMortyAPP`);
     } catch (error) {
-      console.log('Error saving localStorege', error);
-      alert('Error');
+    this.toastrService.error(`Error saving localStorege ${error}`,`RickAndMortyAPP`);
     }
   }
   private removeFromFavorite(id: number): void {
     try {
       const currentsFav = this.getFavoritesCharacters();
-      const characters= currentsFav.filter(item=> item.id !== id);
+      const characters = currentsFav.filter(item => item.id !== id);
       localStorage.setItem(MY_FAVORITES, JSON.stringify([...characters]));
       this.characterFavSubjet.next([...characters]);
+      this.toastrService.warning(`remove from favorite`, `RickAndMortyAPP`);
     } catch (error) {
-      console.log('Error removing localStorege', error);
-      alert('Error');
+      this.toastrService.error(`Error removing localStorege ${error}`,`RickAndMortyAPP`);
+
     }
   }
 
