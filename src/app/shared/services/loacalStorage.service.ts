@@ -43,7 +43,6 @@ export class LocalStorageService {
       this.toastrService.warning(`remove from favorite`, `RickAndMortyAPP`);
     } catch (error) {
       this.toastrService.error(`Error removing localStorege ${error}`,`RickAndMortyAPP`);
-
     }
   }
 
