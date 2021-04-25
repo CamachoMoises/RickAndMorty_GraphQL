@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "rick-and-morty-ac9ec": {
+      "hosting": {
+        "rickandmortyGraphQL": [
+          "rick-and-morty-ac9ec"
+        ]
+      }
+    }
+  }
+}
