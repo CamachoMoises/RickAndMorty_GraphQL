@@ -9,7 +9,9 @@ import { DataService } from '@shared/services/data.service';
   infiniteScroll
   (scrolled)="onScrollDown()"
   >
-    <app-characters-card *ngFor="let character of character$|async" [character]="character"></app-characters-card>
+    <app-characters-card
+    *ngFor="let character of character$|async , let i=index"
+    [character]="character"></app-characters-card>
     <button class="button" *ngIf="showButton" (click)="onscrollTop()" type="button">⬆️</button>
   </section>
   `,
@@ -23,6 +25,7 @@ export class CharactersListComponent {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private dataScv: DataService,
+
   ) { }
 
   @HostListener('window:scroll') onWindowScroll(): void {

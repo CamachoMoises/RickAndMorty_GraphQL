@@ -1,8 +1,9 @@
 <article class="card">
-  <a [routerLink]="['/character-deatils',character.id]"></a>
+  <a [routerLink]="['/character-deatils',character.id]">
   <figure>
     <img rel="preload" as="image" width="300" height="300" [src]="character.image" [alt]="character.name" />
   </figure>
+</a>
   <div class="card__details">
     <figure class="card__favorite" >
       <img (click)="toggleFavorite()" rel="preload" as="image" width="30" height="30"
