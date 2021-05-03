@@ -6,6 +6,7 @@ import { find, mergeMap, pluck, take, tap, withLatestFrom } from 'rxjs/operators
 import { Character, Episode, DataResponce } from '@shared/interfaces/data.interface';
 import { LocalStorageService } from '@shared/services/loacalStorage.service';
 
+
 const QUERY = gql`{
   episodes{
     results{
@@ -44,13 +45,13 @@ export class DataService {
   ) {
     this.getData();
   }
-  getDetails(id: number): any{
+  getDetails(id: number): any {
     return this.character$.pipe(
-      mergeMap( (characters: Character[]) => characters),
-      find((character: Character) => character?.id === id )
+      mergeMap((characters: Character[]) => characters),
+      find((character: Character) => character?.id === id)
     );
   }
-  public getCharactersByPage(pageNum: number): void{
+  public getCharactersByPage(pageNum: number): void {
     const QUERY_BY_PAGE = gql`{
       characters(page:${pageNum}) {
         info {
@@ -63,7 +64,6 @@ export class DataService {
           species
           gender
           image
-
         }
       }
     }`;
@@ -73,13 +73,16 @@ export class DataService {
       take(1),
       pluck('data', 'characters'),
       withLatestFrom(this.character$),
-      tap(([apiResponce, characters])=>{
-        const apiResponceR=apiResponce.results;
-        console.log({apiResponceR ,characters});
+      tap(([apiResponce, characters]) => {
+        const apiResponceR = apiResponce.results;
+        console.log({ apiResponceR, characters });
         this.parseCharacterData([...characters, ...apiResponce.results]);
       })
     ).subscribe();
   }
+
+
+
 
   private getData(): void {
     this.apollo.watchQuery<DataResponce>({ query: QUERY }).valueChanges.pipe(

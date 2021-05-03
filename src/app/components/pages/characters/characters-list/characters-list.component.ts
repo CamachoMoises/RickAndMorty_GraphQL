@@ -5,6 +5,7 @@ import { DataService } from '@shared/services/data.service';
 @Component({
   selector: 'app-characters-list',
   template: `
+  <app-search></app-search>
   <section class="character__list"
   infiniteScroll
   (scrolled)="onScrollDown()"
