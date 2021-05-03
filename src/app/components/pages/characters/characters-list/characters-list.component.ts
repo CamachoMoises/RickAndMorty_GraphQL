@@ -10,9 +10,18 @@ import { DataService } from '@shared/services/data.service';
   infiniteScroll
   (scrolled)="onScrollDown()"
   >
-    <app-characters-card
-    *ngFor="let character of character$|async , let i=index"
-    [character]="character"></app-characters-card>
+  <ng-container *ngIf="character$ |async as characters; else showEmpty">
+
+  <app-characters-card
+  *ngFor="let character of characters, let i=index"
+  [character]="character"></app-characters-card>
+  </ng-container>
+  <ng-template #showEmpty>
+    <div class="no__results">
+      <h1 class="tittle" >Not Results</h1>
+      <img src="assets/imgs/404.jpeg" alt="404">
+    </div>
+  </ng-template>
     <button class="button" *ngIf="showButton" (click)="onscrollTop()" type="button">⬆️</button>
   </section>
   `,
